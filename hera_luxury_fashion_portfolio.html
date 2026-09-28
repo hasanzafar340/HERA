@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HERA Haute Couture | Luxury Fashion Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cormorant Garamond (Serif) & Plus Jakarta Sans (Sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#FAF8F2',
+                            100: '#F3EDDF',
+                            200: '#E4D5B7',
+                            300: '#D4BD8F',
+                            400: '#C5A667',
+                            500: '#B89243',
+                            600: '#997332',
+                            700: '#775626',
+                            800: '#583E1F',
+                            900: '#3A2814'
+                        },
+                        charcoal: {
+                            800: '#18181B',
+                            850: '#121215',
+                            900: '#09090B',
+                            950: '#040405'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3f3f46;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c5a667;
+        }
+
+        /* Glassmorphism effects */
+        .glass-panel {
+            background: rgba(18, 18, 21, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 189, 143, 0.15);
+        }
+        
+        .light .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(184, 146, 67, 0.2);
+        }
+
+        /* Ambient Glows */
+        .gold-glow {
+            box-shadow: 0 0 25px -5px rgba(197, 166, 103, 0.25);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #F3EDDF 0%, #C5A667 50%, #997332 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, #c5a667, #775626) 1;
+        }
+
+        /* Card Hover Animations */
+        .dress-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dress-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        /* Modal Transitions */
+        .modal-backdrop {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Fabric Pattern Simulation */
+        .fabric-texture-khaddar {
+            background-color: #0d3831;
+            background-image: radial-gradient(#155349 1px, transparent 1px), radial-gradient(#155349 1px, #0d3831 1px);
+            background-size: 8px 8px;
+            background-position: 0 0, 4px 4px;
+        }
+        .fabric-texture-banarsi {
+            background-color: #d99b26;
+            background-image: repeating-linear-gradient(45deg, #c48719 0, #c48719 2px, transparent 0, transparent 8px);
+        }
+    </style>
+</head>
+<body class="bg-charcoal-900 text-zinc-100 font-sans antialiased selection:bg-gold-400 selection:text-charcoal-900 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 w-full glass-panel border-b border-gold-400/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-gold-600 via-gold-400 to-gold-200 flex items-center justify-center text-charcoal-950 font-serif font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+                        H
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-2xl tracking-[0.25em] font-semibold text-zinc-100 group-hover:text-gold-300 transition-colors uppercase">HERA</span>
+                        <span class="text-[9px] tracking-[0.3em] text-gold-400/80 font-mono uppercase">Haute Couture</span>
+                    </div>
+                </a>
+
+                <!-- Nav Controls & Search -->
+                <div class="flex items-center gap-4">
+                    <!-- Quick Stats Pill -->
+                    <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-charcoal-800/80 border border-gold-400/20 text-xs font-mono text-gold-300">
+                        <i class="fa-solid fa-gem text-gold-400"></i>
+                        <span>5 Verified Masterpieces</span>
+                    </div>
+
+                    <!-- Theme Toggle -->
+                    <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-full bg-charcoal-800 border border-gold-400/20 text-gold-300 hover:text-gold-100 hover:border-gold-400/50 transition-all">
+                        <i class="fa-solid fa-moon text-sm dark:inline hidden"></i>
+                        <i class="fa-solid fa-sun text-sm dark:hidden inline"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section class="relative py-12 md:py-16 overflow-hidden border-b border-gold-400/10 bg-gradient-to-b from-charcoal-950 to-charcoal-900">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#c5a667_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block px-4 py-1 rounded-full bg-gold-400/10 border border-gold-400/30 text-gold-300 text-xs font-mono tracking-widest uppercase mb-4">
+                Exclusive Lookbook & Specification Showcase
+            </span>
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-zinc-100 tracking-tight leading-tight max-w-4xl mx-auto">
+                Elegance Redefined Through <span class="italic font-serif gold-gradient-text font-semibold">Master Artisanry</span>
+            </h1>
+            <p class="mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">
+                Explore our curated ensemble of bespoke ethnic couture. Each creation is complete with precise technical specifications, hand embroidery details, and color palette breakdowns.
+            </p>
+
+            <!-- Search and Filter Toolbar -->
+            <div class="mt-8 max-w-3xl mx-auto glass-panel p-3 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-3 border border-gold-400/20">
+                <!-- Search Input -->
+                <div class="relative flex-1">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 text-sm"></i>
+                    <input type="text" id="searchInput" oninput="filterDesigns()" placeholder="Search by dress title, fabric, color, or motif..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-charcoal-900/80 border border-gold-400/20 text-zinc-100 placeholder-zinc-500 text-sm focus:outline-none focus:border-gold-400 transition-all">
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+                    <button onclick="setCategoryFilter('All')" class="cat-btn active px-3.5 py-2 rounded-xl text-xs font-medium tracking-wide whitespace-nowrap transition-all bg-gold-400 text-charcoal-950 font-semibold" data-category="All">
+                        All (5)
+                    </button>
+                    <button onclick="setCategoryFilter('Festive')" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-medium tracking-wide whitespace-nowrap transition-all bg-charcoal-800 text-zinc-300 hover:text-gold-300 border border-gold-400/10" data-category="Festive">
+                        Festive & Couture
+                    </button>
+                    <button onclick="setCategoryFilter('Traditional')" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-medium tracking-wide whitespace-nowrap transition-all bg-charcoal-800 text-zinc-300 hover:text-gold-300 border border-gold-400/10" data-category="Traditional">
+                        Traditional
+                    </button>
+                    <button onclick="setCategoryFilter('Daily Wear')" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-medium tracking-wide whitespace-nowrap transition-all bg-charcoal-800 text-zinc-300 hover:text-gold-300 border border-gold-400/10" data-category="Daily Wear">
+                        Daily Grace
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Portfolio Showcase Grid -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <!-- Results Counter -->
+        <div class="flex justify-between items-center mb-6 px-1">
+            <h2 class="font-serif text-2xl text-zinc-200 tracking-wide font-medium flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-gold-400 text-lg"></i>
+                Featured Collections
+            </h2>
+            <span id="resultsCount" class="text-xs font-mono text-gold-400/80 bg-gold-400/10 px-3 py-1 rounded-full border border-gold-400/20">
+                Showing 5 Outfits
+            </span>
+        </div>
+
+        <!-- Dress Cards Grid -->
+        <div id="designsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Dynamic JavaScript Content Cards Rendered Here -->
+        </div>
+
+        <!-- Empty State Message -->
+        <div id="emptyState" class="hidden py-16 text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-charcoal-800 flex items-center justify-center text-gold-400 text-2xl border border-gold-400/20">
+                <i class="fa-solid fa-scissors"></i>
+            </div>
+            <h3 class="font-serif text-xl text-zinc-300 font-medium">No Couture Pieces Match Your Filter</h3>
+            <p class="text-xs text-zinc-500 mt-1">Try adjusting your search terms or select another category above.</p>
+            <button onclick="resetFilters()" class="mt-4 px-4 py-2 rounded-xl bg-gold-400/10 border border-gold-400/30 text-gold-300 text-xs hover:bg-gold-400 hover:text-charcoal-950 transition-all font-medium">
+                Reset Filters
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal-950 border-t border-gold-400/10 py-10 mt-auto text-xs text-zinc-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded-full bg-gold-400 text-charcoal-950 font-serif font-bold text-sm flex items-center justify-center">H</div>
+                <span class="font-serif tracking-widest text-zinc-300 font-medium uppercase">HERA Couture Showcase</span>
+            </div>
+            <p>© 2026 HERA High Fashion Apparel Showcase. Crafted with Precision & Artistry.</p>
+            <div class="flex items-center gap-4 text-zinc-400">
+                <span class="hover:text-gold-300 transition-colors"><i class="fa-solid fa-check-double text-gold-400 mr-1"></i> Exact Specification Sync</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Rich Detail Modal / Drawer -->
+    <div id="dressModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-charcoal-950/80 backdrop-blur-md transition-opacity modal-backdrop opacity-0" onclick="closeDressModal()"></div>
+
+        <!-- Modal Container -->
+        <div class="min-h-screen px-4 text-center flex items-center justify-center p-2 sm:p-4">
+            <div id="modalCard" class="relative inline-block w-full max-w-5xl text-left align-middle transition-all transform opacity-0 scale-95 glass-panel rounded-3xl shadow-2xl border border-gold-400/30 overflow-hidden my-8">
+                
+                <!-- Close Button -->
+                <button onclick="closeDressModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-charcoal-900/80 hover:bg-gold-400 hover:text-charcoal-950 text-zinc-300 border border-gold-400/30 flex items-center justify-center transition-all shadow-lg">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+
+                <!-- Modal Inner Grid Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[600px]">
+                    
+                    <!-- Left Side: Interactive Render Preview & Swatches -->
+                    <div class="lg:col-span-5 bg-gradient-to-b from-charcoal-850 to-charcoal-900 p-6 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-gold-400/15 relative">
+                        <div class="absolute top-4 left-4 z-10">
+                            <span id="modalCategoryBadge" class="px-3 py-1 rounded-full bg-gold-400/20 border border-gold-400/40 text-gold-300 font-mono text-[10px] uppercase tracking-wider">
+                                Category
+                            </span>
+                        </div>
+
+                        <!-- Render SVG Graphic Canvas Display -->
+                        <div id="modalCanvasContainer" class="w-full my-auto py-6 flex flex-col items-center justify-center min-h-[320px]">
+                            <!-- Embedded dynamic SVG illustration will be rendered here -->
+                        </div>
+
+                        <!-- Color Palette Interactive Breakdown -->
+                        <div class="bg-charcoal-900/90 rounded-2xl p-4 border border-gold-400/20 mt-4">
+                            <h4 class="text-xs font-mono uppercase tracking-widest text-gold-400 mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-palette"></i> Color Palette Breakdown
+                            </h4>
+                            <div id="modalColorPalette" class="grid grid-cols-3 gap-2">
+                                <!-- Colors dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Complete Design Specifications -->
+                    <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between max-h-[80vh] overflow-y-auto">
+                        <div class="space-y-6">
+                            
+                            <!-- Header Title & Tagline -->
+                            <div>
+                                <span id="modalGarmentType" class="text-xs font-mono text-gold-400 uppercase tracking-widest font-semibold block mb-1">Garment Type</span>
+                                <h3 id="modalTitle" class="font-serif text-3xl sm:text-4xl text-zinc-100 font-normal leading-tight">Dress Title</h3>
+                                <p id="modalTagline" class="text-gold-300/90 italic font-serif text-lg mt-1 font-light">Tagline</p>
+                            </div>
+
+                            <!-- Spec Highlights Grid -->
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div class="bg-charcoal-800/60 p-3.5 rounded-xl border border-gold-400/10">
+                                    <span class="text-zinc-400 block font-mono text-[10px] uppercase tracking-wider">Fabric Quality</span>
+                                    <span id="modalFabric" class="text-zinc-200 font-semibold text-sm mt-0.5 block">Khaddar</span>
+                                </div>
+                                <div class="bg-charcoal-800/60 p-3.5 rounded-xl border border-gold-400/10">
+                                    <span class="text-zinc-400 block font-mono text-[10px] uppercase tracking-wider">Occasion</span>
+                                    <span id="modalOccasion" class="text-zinc-200 font-semibold text-sm mt-0.5 block">Festive Wear</span>
+                                </div>
+                            </div>
+
+                            <!-- Embroidery & Craftsmanship Style -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-mono uppercase tracking-widest text-gold-400 flex items-center gap-2">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Embroidery Style & Threadwork
+                                </h4>
+                                <div class="bg-charcoal-800/40 p-4 rounded-xl border border-gold-400/10 text-sm text-zinc-300 leading-relaxed" id="modalEmbroidery">
+                                    Embroidery details go here.
+                                </div>
+                            </div>
+
+                            <!-- Detailed Description & Highlights -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-mono uppercase tracking-widest text-gold-400 flex items-center gap-2">
+                                    <i class="fa-solid fa-list-check"></i> Design Features & Structural Details
+                                </h4>
+                                <ul id="modalFeaturesList" class="space-y-2 text-sm text-zinc-300">
+                                    <!-- Dynamic list items -->
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer Actions inside Modal -->
+                        <div class="mt-8 pt-4 border-t border-gold-400/15 flex flex-wrap items-center justify-between gap-4">
+                            <div class="flex items-center gap-2 text-xs text-zinc-400 font-mono">
+                                <i class="fa-solid fa-circle-info text-gold-400"></i>
+                                <span>HERA Spec Sheet Certified</span>
+                            </div>
+                            <button onclick="copyDressSummary()" class="px-5 py-2.5 rounded-xl bg-gold-400 text-charcoal-950 hover:bg-gold-300 font-medium text-xs tracking-wider uppercase transition-all shadow-md flex items-center gap-2">
+                                <i class="fa-regular fa-copy"></i> Copy Specification Brief
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 translate-y-20 opacity-0 transition-all duration-300 bg-gold-400 text-charcoal-950 font-semibold px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-gold-300 text-sm">
+        <i class="fa-solid fa-circle-check text-lg"></i>
+        <span id="toastMessage">Action completed successfully!</span>
+    </div>
+
+    <script>
+        // Data Store containing exact 5 specified designer dresses from spec sheets
+        const DRESSES_DATA = [
+            {
+                id: "dress-1",
+                title: "Peacock Green Embroidered Frock",
+                tagline: "Grace in Every Detail",
+                category: "Traditional",
+                garmentType: "Long Frock / Anarkali Dress with Dupatta",
+                fabric: "Khaddar (Durable, Breathable - Winter/Spring/Autumn)",
+                primaryColor: { name: "Peacock Green", hex: "#0d3831" },
+                secondaryColors: [
+                    { name: "Honeydew (Embroidery)", hex: "#e2e8c0" },
+                    { name: "White (Dupatta)", hex: "#f8f9fa" }
+                ],
+                embroideryStyle: "Minimal & Elegant DMC/Anchor/Resham Threadwork. Features intricate front & back neckline detailing, sleeve cuffs with scalloped embroidery, full hem border, and decorative back neck tassels.",
+                occasion: "Winter / Spring / Autumn Festive & Daily Elegance",
+                additionalInfo: "Includes full flared Anarkali silhouette, neckline keyhole detail with pearl closure, and scattered floral motifs on soft ivory/white dupatta.",
+                features: [
+                    "Long frock with full graceful flared volume",
+                    "Made in high-durability premium Khaddar fabric",
+                    "Neckline with detailed embroidery (Front & Back)",
+                    "Sleeves with embroidered cuffs and scalloped borders",
+                    "Matching front & back hem border embroidery",
+                    "Handcrafted back neck dangling tassels",
+                    "Lightweight white dupatta with scattered delicate motifs"
+                ],
+                renderType: "peacock_frock"
+            },
+            {
+                id: "dress-2",
+                title: "Mustard Yellow Royal Garara Set",
+                tagline: "Regal Opulence & Heritage Charm",
+                category: "Festive",
+                garmentType: "Short Qameez, Flared Banarsi Garara, and Dupatta",
+                fabric: "Net / Organza / Chiffon Qameez, Banarsi Jacquard Garara, Net Dupatta",
+                primaryColor: { name: "Mustard Yellow", hex: "#e5a93c" },
+                secondaryColors: [
+                    { name: "Forest Green (Garara)", hex: "#1c3d2e" },
+                    { name: "Dark Orange (Dupatta)", hex: "#d9531e" }
+                ],
+                embroideryStyle: "Rich Kashmiri & Zardozi Floral & Paisley Threadwork. Features detailed front & back hem borders, sleeve cuffs, paisley motifs, and custom hanging tassels (Tosils).",
+                occasion: "Mehndi, Wedding Festive, Cultural Celebrations",
+                additionalInfo: "Short flared qameez intricately covered in floral motifs, paired with heavily woven Banarsi jacquard garara and a dark orange organza dupatta with embroidered borders.",
+                features: [
+                    "Classic short Qameez with dense floral threadwork",
+                    "Voluminous Banarsi Jacquard Garara in deep forest green",
+                    "Custom neck keyhole with dual-tone tassels (Tosils)",
+                    "Ornate paisley and floral main embroidered motifs",
+                    "Matching embroidered borders across qameez hem and dupatta",
+                    "Vibrant 3-color traditional festive contrast"
+                ],
+                renderType: "mustard_garara"
+            },
+            {
+                id: "dress-3",
+                title: "Coral & Mint Flared Sharara Set",
+                tagline: "Simple, Graceful, Comfortable Daily Luxury",
+                category: "Daily Wear",
+                garmentType: "Short Qameez, Wide Flared Sharara, and Dupatta",
+                fabric: "Premium Lawn / Cotton Qameez, Soft Cotton Sharara, Chiffon Dupatta",
+                primaryColor: { name: "Coral Pink", hex: "#e06d63" },
+                secondaryColors: [
+                    { name: "Mint Green (Sharara)", hex: "#a4c3b2" },
+                    { name: "Ivory (Dupatta)", hex: "#f4f1ea" },
+                    { name: "Mint (Dupatta Embroidery)", hex: "#81a895" }
+                ],
+                embroideryStyle: "Pearl & Star Delicate Floral Neckline Embroidery with Cutwork Fancy Sleeve Lace and mint threadwork scalloped border on dupatta.",
+                occasion: "Casual Chic, Home Gatherings, Spring Daytime Events",
+                additionalInfo: "Designed for home elegance and daily luxury, featuring keyhole neckline adorned with pearl beads and stars, mint floral lace on sleeves, and lightweight dupatta.",
+                features: [
+                    "Delicate pearl & star hand-applied neckline embroidery",
+                    "Fancy sleeve cuffs with mint scalloped lace and pearl accents",
+                    "Breathable coral lawn tunic with loose comfortable cut",
+                    "Extremely wide flared mint green sharara/shalwar",
+                    "Soft ivory chiffon dupatta with mint floral border embroidery",
+                    "Perfect balance of comfort and refined home grace"
+                ],
+                renderType: "coral_sharara"
+            },
+            {
+                id: "dress-4",
+                title: "Powder Pink & Ice Blue Daily Suit",
+                tagline: "Simple, Elegant, Effortless Everyday Grace",
+                category: "Daily Wear",
+                garmentType: "Straight Qameez, Wide Shalwar, and Chiffon Dupatta",
+                fabric: "Cotton Lawn (Lightweight & Breathable Qameez & Shalwar), Chiffon/Voile Dupatta",
+                primaryColor: { name: "Light Pink", hex: "#f3becc" },
+                secondaryColors: [
+                    { name: "Ice Blue (Shalwar & Dupatta)", hex: "#9bbcd3" },
+                    { name: "Off White (Lace Finish)", hex: "#f0efea" }
+                ],
+                embroideryStyle: "Delicate Handcrafted Floral Border Embroidery on Sleeves & Trouser Hem using light blue and pink thread (Cotton/Resham).",
+                occasion: "Everyday Wear, Spring / Summer Afternoon Gatherings",
+                additionalInfo: "Features subtle navy blue piping around crew neckline, small scattered floral motifs on ice blue wide shalwar, and pure off-white lace trim on dupatta.",
+                features: [
+                    "Pure cotton lawn qameez in refreshing powder pink",
+                    "Crew neckline with clean navy blue piping detail",
+                    "Intricate sleeve cuff hand embroidery in blue & pink resham",
+                    "Wide ice blue shalwar/trouser with floral hem border",
+                    "Scattered mini floral motifs embroidered across trouser",
+                    "Flowy ice blue chiffon dupatta with scalloped off-white lace border"
+                ],
+                renderType: "pink_blue_suit"
+            },
+            {
+                id: "dress-5",
+                title: "Rose Pink & Navy Blue Contrast Suit",
+                tagline: "Vibrant Contrast & Contemporary Tradition",
+                category: "Daily Wear",
+                garmentType: "Medium Straight Qameez, Flared Palazzos, and Contrast Dupatta",
+                fabric: "Cotton Lawn Qameez & Trouser, Flowy Chiffon Dupatta",
+                primaryColor: { name: "Rose Pink", hex: "#d97382" },
+                secondaryColors: [
+                    { name: "Navy Blue (Trouser & Dupatta)", hex: "#232f48" },
+                    { name: "Off White (Lace Trim)", hex: "#eae8e1" }
+                ],
+                embroideryStyle: "Handmade Geometric & Floral Border Threadwork in Pink & Navy Resham Thread. No embroidery on back for ultimate light wear.",
+                occasion: "Spring / Summer Casuals, Day Outings, Family Functions",
+                additionalInfo: "Vibrant rose pink tunic contrasted against rich deep navy blue flared trousers with matching scalloped navy dupatta and delicate white lace.",
+                features: [
+                    "Deep contrast palette combining rose pink with midnight navy",
+                    "Geometric and floral band embroidery on sleeve cuffs",
+                    "Flared navy blue trouser with wide floral embroidered hem band",
+                    "Scattered white floral dots printed/embroidered on dupatta",
+                    "Delicate off-white scalloped lace trim framing the dupatta",
+                    "Breathable, lightweight cotton lawn suitable for hot summer days"
+                ],
+                renderType: "rose_navy_suit"
+            }
+        ];
+
+        // Global State Variables
+        let activeCategory = "All";
+        let searchQuery = "";
+
+        // Dynamic SVG Illustrator Generator for Couture Designs
+        function generateDressSVG(type, width = 280, height = 360) {
+            switch (type) {
+                case "peacock_frock":
+                    return `
+                    <img src="dress 4.png" alt="Peacock Green Embroidered Frock" width="${width}" height="${height}" class="drop-shadow-xl rounded-lg"/>
+                    `;
+
+                case "mustard_garara":
+                    return `
+                    <img src="dress 3.png" alt="Mustard Yellow Royal Garara Set" width="${width}" height="${height}" class="drop-shadow-xl rounded-lg"/>
+                    `;
+
+                case "coral_sharara":
+                    return `
+                    <img src="dress 5.png" alt="Coral & Mint Flared Sharara Set" width="${width}" height="${height}" class="drop-shadow-xl rounded-lg"/>
+                    `;
+
+                case "pink_blue_suit":
+                    return `
+                    <img src="dress 7.png" alt="Powder Pink & Ice Blue Daily Suit" width="${width}" height="${height}" class="drop-shadow-xl rounded-lg"/>
+                    `;
+
+                case "rose_navy_suit":
+                    return `
+                    <img src="dress 6.png" alt="Rose Pink & Navy Blue Contrast Suit" width="${width}" height="${height}" class="drop-shadow-xl rounded-lg"/>
+                    `;
+                default:
+                    return '';
+            }
+        }
+
+        // Render Design Gallery Grid Cards
+        function renderGallery() {
+            const gridContainer = document.getElementById("designsGrid");
+            const emptyState = document.getElementById("emptyState");
+            const resultsCount = document.getElementById("resultsCount");
+
+            const filteredData = DRESSES_DATA.filter(dress => {
+                const matchesCategory = (activeCategory === "All") || (dress.category === activeCategory);
+                const query = searchQuery.toLowerCase().trim();
+                const matchesSearch = !query || 
+                    dress.title.toLowerCase().includes(query) ||
+                    dress.fabric.toLowerCase().includes(query) ||
+                    dress.primaryColor.name.toLowerCase().includes(query) ||
+                    dress.embroideryStyle.toLowerCase().includes(query) ||
+                    dress.garmentType.toLowerCase().includes(query);
+
+                return matchesCategory && matchesSearch;
+            });
+
+            resultsCount.textContent = `Showing ${filteredData.length} Outfit${filteredData.length === 1 ? '' : 's'}`;
+
+            if (filteredData.length === 0) {
+                gridContainer.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            gridContainer.innerHTML = filteredData.map(dress => {
+                const svgGraphic = generateDressSVG(dress.renderType, 240, 300);
+                return `
+                <div class="dress-card glass-panel rounded-3xl overflow-hidden border border-gold-400/20 flex flex-col justify-between group">
+                    <!-- Card Media Header -->
+                    <div class="relative bg-gradient-to-b from-charcoal-850 to-charcoal-900 p-6 flex items-center justify-center min-h-[300px] cursor-pointer overflow-hidden" onclick="openDressModal('${dress.id}')">
+                        <!-- Category Tag -->
+                        <span class="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-charcoal-900/80 border border-gold-400/30 text-gold-300 font-mono text-[10px] uppercase tracking-wider backdrop-blur-md">
+                            ${dress.category}
+                        </span>
+
+                        <!-- Render SVG Graphic Canvas -->
+                        <div class="transform group-hover:scale-105 transition-transform duration-500">
+                            ${svgGraphic}
+                        </div>
+
+                        <!-- Hover Overlay Button -->
+                        <div class="absolute inset-0 bg-charcoal-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 backdrop-blur-[2px]">
+                            <span class="px-4 py-2 rounded-xl bg-gold-400 text-charcoal-950 font-semibold text-xs uppercase tracking-wider shadow-xl transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                                <i class="fa-regular fa-eye mr-1"></i> Inspect Specs
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card Technical Metadata -->
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-[11px] font-mono text-gold-400 uppercase tracking-widest block mb-1">
+                                ${dress.garmentType.split('with')[0]}
+                            </span>
+                            <h3 class="font-serif text-2xl text-zinc-100 font-normal group-hover:text-gold-300 transition-colors leading-snug">
+                                ${dress.title}
+                            </h3>
+                            <p class="text-xs text-zinc-400 italic mt-1 font-serif">"${dress.tagline}"</p>
+                        </div>
+
+                        <!-- Color & Fabric Pill Preview -->
+                        <div class="pt-3 border-t border-gold-400/10 flex items-center justify-between text-xs">
+                            <div class="flex items-center gap-2">
+                                <span class="w-4 h-4 rounded-full border border-gold-400/30 shadow-inner" style="background-color: ${dress.primaryColor.hex}" title="${dress.primaryColor.name}"></span>
+                                <span class="text-zinc-300 font-medium text-xs truncate max-w-[120px]">${dress.primaryColor.name}</span>
+                            </div>
+                            <span class="text-zinc-400 font-mono text-[11px] px-2.5 py-1 rounded-md bg-charcoal-800/80 border border-gold-400/10">
+                                ${dress.fabric.split('(')[0]}
+                            </span>
+                        </div>
+
+                        <!-- Primary Action Button -->
+                        <button onclick="openDressModal('${dress.id}')" class="w-full py-2.5 rounded-xl bg-charcoal-800 hover:bg-gold-400 text-gold-300 hover:text-charcoal-950 border border-gold-400/30 font-medium text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2">
+                            <span>View Full Specifications</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // Modal Control Functions
+        function openDressModal(id) {
+            const dress = DRESSES_DATA.find(d => d.id === id);
+            if (!dress) return;
+
+            // Populate Modal Content
+            document.getElementById("modalCategoryBadge").textContent = dress.category;
+            document.getElementById("modalGarmentType").textContent = dress.garmentType;
+            document.getElementById("modalTitle").textContent = dress.title;
+            document.getElementById("modalTagline").textContent = `"${dress.tagline}"`;
+            document.getElementById("modalFabric").textContent = dress.fabric;
+            document.getElementById("modalOccasion").textContent = dress.occasion;
+            document.getElementById("modalEmbroidery").textContent = dress.embroideryStyle;
+
+            // Render SVG dynamic graphic inside modal
+            document.getElementById("modalCanvasContainer").innerHTML = generateDressSVG(dress.renderType, 260, 320);
+
+            // Populate Color Palette Breakdown
+            const paletteContainer = document.getElementById("modalColorPalette");
+            const allColors = [dress.primaryColor, ...dress.secondaryColors];
+            paletteContainer.innerHTML = allColors.map(c => `
+                <div class="flex flex-col items-center p-2 rounded-xl bg-charcoal-800/60 border border-gold-400/10 text-center">
+                    <span class="w-7 h-7 rounded-full border border-gold-400/30 mb-1.5 shadow-md" style="background-color: ${c.hex}"></span>
+                    <span class="text-[10px] text-zinc-200 font-medium truncate w-full">${c.name}</span>
+                    <span class="text-[9px] font-mono text-gold-400/80">${c.hex}</span>
+                </div>
+            `).join('');
+
+            // Populate Features Checklist
+            const featuresList = document.getElementById("modalFeaturesList");
+            featuresList.innerHTML = dress.features.map(feat => `
+                <li class="flex items-start gap-2.5">
+                    <i class="fa-solid fa-check text-gold-400 text-xs mt-1"></i>
+                    <span>${feat}</span>
+                </li>
+            `).join('');
+
+            // Store current dress ID on modal for clipboard copying
+            document.getElementById("dressModal").dataset.currentDressId = id;
+
+            // Show Modal with Animation
+            const modal = document.getElementById("dressModal");
+            const backdrop = modal.querySelector(".modal-backdrop");
+            const card = document.getElementById("modalCard");
+
+            modal.classList.remove("hidden");
+            setTimeout(() => {
+                backdrop.classList.remove("opacity-0");
+                card.classList.remove("opacity-0", "scale-95");
+                card.classList.add("opacity-100", "scale-100");
+            }, 10);
+
+            document.body.style.overflow = "hidden"; // Lock background scroll
+        }
+
+        function closeDressModal() {
+            const modal = document.getElementById("dressModal");
+            const backdrop = modal.querySelector(".modal-backdrop");
+            const card = document.getElementById("modalCard");
+
+            backdrop.classList.add("opacity-0");
+            card.classList.remove("opacity-100", "scale-100");
+            card.classList.add("opacity-0", "scale-95");
+
+            setTimeout(() => {
+                modal.classList.add("hidden");
+                document.body.style.overflow = ""; // Restore scroll
+            }, 300);
+        }
+
+        // Copy Dress Specifications to Clipboard
+        function copyDressSummary() {
+            const id = document.getElementById("dressModal").dataset.currentDressId;
+            const dress = DRESSES_DATA.find(d => d.id === id);
+            if (!dress) return;
+
+            const summaryText = `HERA Couture Specification Brief
+---------------------------------
+Design Title: ${dress.title}
+Tagline: ${dress.tagline}
+Category: ${dress.category}
+Garment Type: ${dress.garmentType}
+Fabric: ${dress.fabric}
+Primary Color: ${dress.primaryColor.name} (${dress.primaryColor.hex})
+Occasion: ${dress.occasion}
+Embroidery Style: ${dress.embroideryStyle}
+Additional Details: ${dress.additionalInfo}`;
+
+            // Safe clipboard copy mechanism
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = summaryText;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempTextArea);
+
+            showToast("Specification brief copied to clipboard!");
+        }
+
+        // Filter Controls
+        function setCategoryFilter(category) {
+            activeCategory = category;
+            document.querySelectorAll(".cat-btn").forEach(btn => {
+                if (btn.dataset.category === category) {
+                    btn.classList.add("bg-gold-400", "text-charcoal-950", "font-semibold");
+                    btn.classList.remove("bg-charcoal-800", "text-zinc-300");
+                } else {
+                    btn.classList.remove("bg-gold-400", "text-charcoal-950", "font-semibold");
+                    btn.classList.add("bg-charcoal-800", "text-zinc-300");
+                }
+            });
+            renderGallery();
+        }
+
+        function filterDesigns() {
+            searchQuery = document.getElementById("searchInput").value;
+            renderGallery();
+        }
+
+        function resetFilters() {
+            document.getElementById("searchInput").value = "";
+            searchQuery = "";
+            setCategoryFilter("All");
+        }
+
+        // Toast Feedback System
+        function showToast(message) {
+            const toast = document.getElementById("toastNotification");
+            const toastMsg = document.getElementById("toastMessage");
+
+            toastMsg.textContent = message;
+            toast.classList.remove("translate-y-20", "opacity-0");
+
+            setTimeout(() => {
+                toast.classList.add("translate-y-20", "opacity-0");
+            }, 3500);
+        }
+
+        // Dark / Light Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains("dark")) {
+                html.classList.remove("dark");
+                html.classList.add("light");
+                showToast("Switched to Luxury Light Theme");
+            } else {
+                html.classList.remove("light");
+                html.classList.add("dark");
+                showToast("Switched to Luxury Dark Theme");
+            }
+        }
+
+        // Global Keyboard Event Listener (Close modal on Escape key)
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                closeDressModal();
+            }
+        });
+
+        // Initialize App on DOM ready
+        window.onload = function() {
+            renderGallery();
+        };
+    </script>
+</body>
+</html>
